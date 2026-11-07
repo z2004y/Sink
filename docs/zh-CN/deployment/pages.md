@@ -71,7 +71,7 @@ description: 通过 Git 集成和仪表盘管理的绑定将 Sink 部署到 Clou
 
 Pages 会把仪表盘中的这套变量同时提供给构建和运行环境，但各组用途不同：`DEPLOY_*` 值用于生成部署配置，`CLOUDFLARE_*` 值用于 Wrangler 鉴权，`NUXT_*` 值用于配置运行中的应用。Pages 的 R2 只能在 **Bindings** 中添加，不要添加 R2 `DEPLOY_*` 变量。更多选项见[配置参考](/zh-CN/configuration/)。
 
-仓库的 `postbuild` 脚本仅在 Pages 构建 `master` 分支时（`CF_PAGES=1` 且 `CF_PAGES_BRANCH=master`）执行远程 D1 迁移。因此，Pages 主分支构建成功时会自动更新 D1 数据库结构；预览分支构建不会迁移。
+仓库的 `postbuild` 脚本仅在 Pages 构建 `master` 分支时（`CF_PAGES=1` 且 `CF_PAGES_BRANCH=master`）执行远程 D1 迁移。因此，Pages 主分支构建成功时会自动更新 D1 数据库结构；预览分支构建不会迁移。若 `DEPLOY_*` 或 `CLOUDFLARE_*` 变量缺失，脚本会打印警告并跳过迁移，构建与部署仍然继续（运行时可用的绑定不受影响），因此站点不会因为漏配变量而停止更新。
 
 ## 4. 部署并首次使用
 

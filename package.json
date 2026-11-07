@@ -16,7 +16,7 @@
     "test": "vitest",
     "prebuild": "pnpm build:sphere",
     "build": "NODE_OPTIONS=--max-old-space-size=8192 nuxt build",
-    "postbuild": "test \"$CF_PAGES:$CF_PAGES_BRANCH\" != \"1:master\" || pnpm db:migrate:remote",
+    "postbuild": "node scripts/pages-postbuild.js",
     "build:map": "node scripts/build-map.js",
     "build:sphere": "node scripts/build-sphere.js",
     "build:colo": "node scripts/build-colo.js",

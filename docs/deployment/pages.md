@@ -71,7 +71,7 @@ How to create the analytics token: Cloudflare dashboard → profile icon → **M
 
 Pages exposes this dashboard variable set to both build and runtime, but each group has a distinct role: `DEPLOY_*` values generate deployment configuration, `CLOUDFLARE_*` values authenticate Wrangler, and `NUXT_*` values configure the running application. For Pages, add R2 only under **Bindings**; do not add R2 `DEPLOY_*` variables. More options: [configuration](/configuration/).
 
-The repository's `postbuild` script runs the remote D1 migration only when Pages builds the `master` branch (`CF_PAGES=1` and `CF_PAGES_BRANCH=master`). Therefore, a successful main-branch Pages build updates the D1 schema automatically; preview-branch builds do not.
+The repository's `postbuild` script runs the remote D1 migration only when Pages builds the `master` branch (`CF_PAGES=1` and `CF_PAGES_BRANCH=master`). Therefore, a successful main-branch Pages build updates the D1 schema automatically; preview-branch builds do not. When the `DEPLOY_*` or `CLOUDFLARE_*` variables are missing, the script logs a warning and skips the migration instead of failing the build, so the site still deploys with whatever bindings are configured.
 
 ## 4. Deploy and first use
 
